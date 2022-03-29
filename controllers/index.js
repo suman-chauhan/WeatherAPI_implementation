@@ -1,7 +1,7 @@
 import WeatherInput from "../modules/wether.js";
 import axios from "axios";
 
-export const getData = async (req, res) => {
+export const insertData = async (req, res) => {
   const response = await axios
     .get(
       `https://api.openweathermap.org/data/2.5/weather?q=pune&appid=a10a3709eb4e41732a065540246ccda7`
@@ -23,7 +23,7 @@ export const getData = async (req, res) => {
   if (flag == true) {
     let weather = await new WeatherInput({ ...data, weather: data });
     await weather.save();
-    res.status(201).json(weather);
+    res.status(200).json(weather);
   } else
     return res.send({
       message: "Date is not prime so you can’t request the data",
