@@ -10,13 +10,13 @@ beforeAll(async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
-    .then(() => app.listen(3000))
-    .catch((error) => console.log(`${error} did not connect`));
+    server= app.listen(3000);
+    // .catch((error) => console.log(`${error} did not connect`));
 });
-
 afterAll(() => {
   try {
     mongoose.connection.close();
+    server.close()
   } catch (error) {
     console.log(error);
   }
