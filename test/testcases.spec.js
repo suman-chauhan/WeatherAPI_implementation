@@ -2,10 +2,8 @@ import app from "../app.js";
 import supertest from "supertest";
 import { CONNECTION_URL } from "../config/index.js";
 import mongoose from "mongoose";
-import { expect } from "@jest/globals";
 const requestWithSupertest = supertest(app);
-
-
+var  server ;
 beforeAll(async () => {
   mongoose
     .connect(CONNECTION_URL, {
@@ -16,12 +14,12 @@ beforeAll(async () => {
     .catch((error) => console.log(`${error} did not connect`));
 });
 
-afterAll( () => {
- try {
-     mongoose.connection.close()
- } catch (error) {
-     console.log(error);
- }
+afterAll(() => {
+  try {
+    mongoose.connection.close();
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 describe("wetherApi Endpoints", () => {
